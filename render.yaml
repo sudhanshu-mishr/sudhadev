@@ -1,0 +1,30 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: polymath-portfolio-backend
+    runtime: node
+    region: oregon
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000
+
+  # Frontend Static Site
+  - type: static
+    name: polymath-portfolio-frontend
+    region: oregon
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: polymath-portfolio-backend
+          property: url
