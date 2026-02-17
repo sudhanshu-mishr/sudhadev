@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudhanshu - Polymath Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              border: "hsl(var(--border))",
+              input: "hsl(var(--input))",
+              ring: "hsl(var(--ring))",
+              background: "hsl(var(--background))",
+              foreground: "hsl(var(--foreground))",
+              primary: {
+                DEFAULT: "hsl(var(--primary))",
+                foreground: "hsl(var(--primary-foreground))",
+              },
+              secondary: {
+                DEFAULT: "hsl(var(--secondary))",
+                foreground: "hsl(var(--secondary-foreground))",
+              },
+              destructive: {
+                DEFAULT: "hsl(var(--destructive))",
+                foreground: "hsl(var(--destructive-foreground))",
+              },
+              muted: {
+                DEFAULT: "hsl(var(--muted))",
+                foreground: "hsl(var(--muted-foreground))",
+              },
+              accent: {
+                DEFAULT: "hsl(var(--accent))",
+                foreground: "hsl(var(--accent-foreground))",
+              },
+              popover: {
+                DEFAULT: "hsl(var(--popover))",
+                foreground: "hsl(var(--popover-foreground))",
+              },
+              card: {
+                DEFAULT: "hsl(var(--card))",
+                foreground: "hsl(var(--card-foreground))",
+              },
+            },
+            borderRadius: {
+              lg: "var(--radius)",
+              md: "calc(var(--radius) - 2px)",
+              sm: "calc(var(--radius) - 4px)",
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --background: 0 0% 0%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 217.2 91.2% 59.8%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 224.3 76.3% 48%;
+        --radius: 0.5rem;
+
+        --color-primary: #6366f1;
+        --color-dark: #000000;
+        --size-container: 1400px;
+        --container-padding: 2em;
+        --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+      }
+
+      body { 
+        font-family: 'Inter', sans-serif; 
+        background-color: #000000; 
+        color: white; 
+        margin: 0; 
+        overflow-x: hidden;
+      }
+      .mono { font-family: 'JetBrains Mono', monospace; }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #000000; }
+      ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #334155; }
+      html { scroll-behavior: smooth; }
+
+      /* Sterling Gate Kinetic Navigation Styles */
+      .site-header-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 1.5rem 0;
+        pointer-events: none;
+      }
+      .nav-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--size-container);
+        margin: 0 auto;
+        padding: 0 var(--container-padding);
+        pointer-events: auto;
+      }
+      .nav-row__right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+      .nav-toggle-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #94a3b8;
+        transition: color 0.3s ease;
+      }
+      .nav-toggle-label:hover {
+        color: white;
+      }
+      .nav-close-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0;
+      }
+      .menu-button-text {
+        height: 1.5rem;
+        overflow: hidden;
+        position: relative;
+        text-align: right;
+      }
+      .menu-button-text p {
+        margin: 0;
+        line-height: 1.5rem;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+      .icon-wrap {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .nav-overlay-wrapper {
+        position: fixed;
+        inset: 0;
+        z-index: 900;
+        display: none;
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(24px);
+        opacity: 0;
+      }
+      .menu-content {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .backdrop-layer {
+        position: absolute;
+        inset: 0;
+        background: var(--color-dark);
+        z-index: 1;
+      }
+      .backdrop-layer.first { background: #000000; opacity: 0.8; }
+      .backdrop-layer.second { background: #000000; opacity: 0.9; }
+      
+      .ambient-background-shapes {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .bg-shape {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80vh;
+        height: 80vh;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .bg-shape.active {
+        opacity: 1;
+      }
+      
+      .menu-content-wrapper {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 10%;
+      }
+      .menu-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .menu-list-item {
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+      .nav-link {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        font-size: clamp(2rem, 5vw, 5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        transition: transform 0.4s var(--cubic-default);
+      }
+      .nav-link:hover {
+        transform: translateX(20px);
+        color: var(--color-primary);
+      }
+
+      /* Translucent Transitions */
+      .translucent-page {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "lucide-react": "https://esm.sh/lucide-react@0.475.0?external=react",
+    "three": "https://esm.sh/three@0.182.0",
+    "gsap": "https://esm.sh/gsap@3.12.5",
+    "gsap/CustomEase": "https://esm.sh/gsap@3.12.5/dist/CustomEase",
+    "framer-motion": "https://esm.sh/framer-motion@11.15.0?external=react,react-dom",
+    "clsx": "https://esm.sh/clsx@2.1.1",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@2.5.5",
+    "class-variance-authority": "https://esm.sh/class-variance-authority@0.7.1",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+</head>
+  <body class="bg-black text-slate-100 overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

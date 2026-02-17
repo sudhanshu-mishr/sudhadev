@@ -1,0 +1,7 @@
+{
+  "name": "Sudhanshu - Polymath Portfolio",
+  "description": "A high-performance portfolio showcasing expertise in VLSI Engineering, Software Development, Athletics, and Writing.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
